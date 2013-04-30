@@ -33,7 +33,7 @@ It designed to work with [Chaos](https://github.com/garnieretienne/chaos) utilit
 * `REDIS_PORT`     : Redis service listening port
 * `REDIS_PASSWORD` : Redis datastore password access
 
-These configuration variable can be managed using the `chaos servicepacks config SERVICEPACK_NAME VAR=VALUE`.
+These configuration variable can be managed using the `chaos servicepacks config SERVICEPACK_NAME VAR=VALUE --provider SERVICE_PROVIDER` with `SERVICE_PROVIDER` the host on which the servicepack is setuped.
 
 # License
 
