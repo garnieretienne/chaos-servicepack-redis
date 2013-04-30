@@ -224,7 +224,7 @@ slave-priority 100
 #
 # requirepass foobared
 <% if node['redis']['password'] %>
-  requirepass node['redis']['password']
+  requirepass <%= node['redis']['password'] %>
 <% end %>
 
 # Command renaming.
