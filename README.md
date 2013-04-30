@@ -1,4 +1,4 @@
-# Chaos Redis buildpack
+# Chaos Redis Servicepack
 
 This servicepack install and configure a Redis server instance and provide a global ressource access.
 
