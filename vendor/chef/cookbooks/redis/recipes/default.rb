@@ -1,11 +1,4 @@
-#
-# Cookbook Name:: redis
-# Recipe:: default
-#
-# Copyright 2013, Etienne Garnier
-#
-# All rights reserved - Do Not Redistribute
-#
+# Cookbook to install Redis stack using the package manager.
 
 # Install Redis package
 package "redis server" do
