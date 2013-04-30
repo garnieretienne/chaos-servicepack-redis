@@ -1,1 +1,51 @@
 #!/bin/bash
+set -e
+
+ADDON_LABEL="Chaos Redis service"
+ADDON_DESC="Provide a global Redis server access."
+
+declare -A ADDON_PLANS
+ADDON_PLANS=( \
+['chaos-redis:global']='Global Redis access' \
+['redistogo:nano']='Provide the "chaos-redis:global" plan (heroku support)' \
+['myredis:gratis']='Provide the "chaos-redis:global" plan (heroku support)' \
+['rediscloud:20']='Provide the "chaos-redis:global" plan (heroku support)' \
+)
+
+# Tell if an addon plan is supported
+is_supported(){
+  local addon_plan=$1
+
+  for plan in "${!ADDON_PLANS[@]}"; do 
+    if [ "$plan" == "$addon_plan" ]; then
+      echo $ADDON_LABEL
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# Addon description
+about(){
+  local addon_plans=""
+
+  for plan in "${!ADDON_PLANS[@]}"; do
+    addon_plans="${addon_plans}- $plan \x20\x20\x20 \t ${ADDON_PLANS["$plan"]} \n    "
+  done
+
+  local description=$(cat << EOD
+$ADDON_LABEL:
+  $ADDON_DESC
+  Plans:
+    $addon_plans \r\c 
+EOD
+)
+  echo -e "$description"
+}
+
+if [[ "$1" == "--about" ]]; then
+  about
+else
+  is_supported $1
+fi

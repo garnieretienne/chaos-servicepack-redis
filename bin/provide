@@ -1,5 +1,7 @@
 #!/bin/bash
+set -e
 
+# Display the global redis URL
 print_redis_url(){
   axx=$(if [[ $REDIS_PASSWORD != "" ]]; then echo -n "chaos:${REDIS_PASSWORD}@"; fi)
   echo "REDIS_URL=redis://${axx}${REDIS_ADDRESS:=127.0.0.1}:${REDIS_PORT:=6379}"
