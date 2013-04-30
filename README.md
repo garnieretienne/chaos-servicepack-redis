@@ -1,29 +1,33 @@
+# Chaos Redis buildpack
+
 This servicepack install and configure a Redis server instance and provide a global ressource access.
 
-# Supported addon plans
+It designed to work with [Chaos](https://github.com/garnieretienne/chaos) utility.
+
+## Supported addon plans
 
 * `chaos-redis:global` : Provide an access to the global Redis ressource
 * `redistogo:nano`     : (heroku support) Alias for the `chaos-redis:global` plan
 * `myredis:gratis`     : (heroku support) Alias for the `chaos-redis:global` plan
 * `rediscloud:20`      : (heroku support) Alias for the `chaos-redis:global` plan
 
-# Installation
+## Installation
 
-## Setup the service provider host
+### Setup the service provider host
 
 `chaos servicepacks setup NAME https://github.com/garnieretienne/chaos-servicepack-redis.git --provider HOST` with `NAME` the name of your service (ex: `redis`) and `HOST` the bootstraped server hosting the service.
 
-## Install the servicepack on an app server (and allow it to offer Redis addon plans)
+### Install the servicepack on an app server (and allow it to offer Redis addon plans)
 
 **Note**: If the service provider host is also the app server, no need to install the servicepack on it (it had already be installed during its setup).
 
 `chaos servicepacks install NAME --provider PROVIDER_HOST --server APP_SERVER_HOST` with `NAME` the name of your service (ex: `redis`), `PROVIDER_HOST` the host on which the servicepack has been setuped and `APP_SERVER_HOST` the host that will provide the Redis addon plans.
 
-## Add an addon plan to an app
+### Add an addon plan to an app
 
 `chaos addons add ADDON_PLAN --server APP_SERVER --name APP_NAME` with `ADDON_PLAN` the plan name (ex: `chaos-redis:global`), `APP_SERVER` the host hosting the app and on which the servicepack has been installed, and `APP_NAME` the app to add the addon to.
 
-# Config variables
+## Config variables
 
 * `REDIS_ADDRESS`  : Redis service listening IP address
 * `REDIS_PORT`     : Redis service listening port
